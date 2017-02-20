@@ -1,1 +1,27 @@
-Hello, World of the Craftyjs component entity game framework. 
+- Changes -
+
+* Made the start location dynamic so that a user could choose anywhere on the maze as their starting location.
+* Added a "refresh" button for a new map.
+* Changed the wall dimensions to accommodate for wall overlap. It may have been my display, but extended use on the same maze
+  prior to the change caused portions of the maze's walls to disappear.
+* Adjusted trail "timeout" for testing purposes.
+* Variable speeds for trails
+
+- My "to-do/wish I had time" list! -
+
+^ PDF/email mazes
+^ Spruce up the GUI
+^ Option for pausing the trail
+^ Option for removal of failed trails
+^ looping feature (perhaps for self made screen savers)
+^ adjustable maze sizes
+
+- Thoughts -
+
+> Crash course in DFS! At first, my initial thought would be to approach DFS from a matrix point of view, but I am not as versed in
+  matrices as I would like. Looks like I know what I'll be jumping into soon!
+> One feature I would pursue would be adding in a "shortest route" path. Several times the algorithm found a way to the end but missed
+  a much shorter route. If I had the time, I would tinker with what paths the algorithm found and select the shortest. Maybe store each
+  path in a variable then run the shortest. That would mean a lot more strain on the computer, but given the size of the maze, I don't
+  think too much. If the mazes we much larger, I can imagine there might be an issue with recursiveness.
+> Craftyjs does have a lot of interesting functionality and I think I might just play with it more!

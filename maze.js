@@ -1,5 +1,5 @@
 window.onload = function () {
-    "use strict";
+    // "use strict";
     var width = 800,
         height = 600,
         radius = 16,
@@ -16,7 +16,10 @@ window.onload = function () {
         i,
         g,
         startCell,
-        click;
+        clicked = 0,
+        slow,
+        normal,
+        fast;
 
     Crafty.init(width, height);
     Crafty.background('rgb(230,230,230)');
@@ -55,7 +58,7 @@ window.onload = function () {
             if (currentCell.x === endCell.x && currentCell.y === endCell.y) {
                 found = true;
             }
-        }
+        } // while
         if (stack.length) {
             stack.push(endCell);
         }
@@ -64,20 +67,36 @@ window.onload = function () {
     }
 
     click = function () {
-        // on click, use dfs to search our maze
-        var stack = dfsSearch(startCell, this),
+        if (clicked === 0) {
+          startCell = this;
+          this.drawStartNode();
+          clicked = 1;
+        } else {
+          endNode = this;
+          this.drawEndNode();
+          clicked = 0;
+        }
+    };
+
+    runTrail = function () {
+        var stack = dfsSearch(startCell, endNode),
             neighbor;
         if (stack.length) {
             startCell = stack.shift();
             while (stack.length) {
                 neighbor = stack.shift();
                 Crafty.e("Trail")
-                    .attr({slow: false, trailColor: 'rgb(0,0,255)'})
+                    .attr({ trailColor: 'rgb(0,0,255)'})
                     .connectNodes(startCell, neighbor);
                 startCell = neighbor;
             }
         }
     };
+
+    newMaze = function () {
+        document.location.reload();
+    };
+
     // build the grid for our DFS and rendering
     for (y = 0; y < yCount; y++) {
         // row information is used to assign neighbors
@@ -94,9 +113,9 @@ window.onload = function () {
                 cell.addNeighbor(previousCell);
             }
             // set our initial start cell to the center of the maze
-            if (Math.floor(yCount / 2) === y && Math.floor(xCount / 2) === x) {
-                startCell = cell;
-            }
+            // if (Math.floor(yCount / 2) === y && Math.floor(xCount / 2) === x) {
+            //     startCell = cell;
+            // }
             previousCell = cell;
         }
         if (previousRow.length !== 0) {

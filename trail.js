@@ -1,6 +1,20 @@
 (function (Crafty) {
-    "use strict";
-    var timeout = 0;
+    // "use strict";
+    var timeout = 0,
+    speed = 12;
+
+    slow = function () {
+        speed = 30;
+    };
+
+    normal = function () {
+        speed = 12;
+    };
+
+    fast = function () {
+        speed = 0.075;
+    };
+
     Crafty.c("Trail", {
         slow: true,
         trailColor: 'rgb(255,0,0)',
@@ -32,7 +46,7 @@
                 // change this square to be a horizontal rectangle
                 width = start.radius;
                 // move the rectangle to the left so that it crosses the border of the empty wall of the two cells
-                centerX = centerX - start.radius;
+                centerX = centerX - start.radius+2.5;
             }
             // is the first cell to the right of the second cell (Note: it could be neither if it is above or below)
             if (start.x < end.x) {
@@ -44,7 +58,7 @@
             // is the first cell below the second cell
             if (start.y > end.y) {
                 height = start.radius;
-                centerY = centerY - start.radius;
+                centerY = centerY - start.radius+2.5;
             }
             // is the first cell above the second cell (Note: it could be neither if it is to the right or left)
             if (start.y < end.y) {
@@ -53,7 +67,7 @@
 
             // show the trail as an animation
             if (this.slow) {
-                timeout += 25;
+                timeout += speed;
             }
             t = setTimeout(function () {
                 this.color(this.trailColor)

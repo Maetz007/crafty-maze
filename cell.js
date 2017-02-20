@@ -1,6 +1,6 @@
 (function (Crafty) {
     "use strict";
-    var wallWidth = 0.5,
+    var wallWidth = 1.0,
         radius = 16;
     // our Cell component. Consists of four walls, positional information, and
     // information needed for DFS
@@ -9,11 +9,11 @@
         init: function () {
             // randomly generate a cell color.
             // prevent it from being close to the same color as the background (230)
-            var red =  Math.floor(Math.random() * 200),
-                green = Math.floor(Math.random() * 200),
-                blue = Math.floor(Math.random() * 200);
-            this.color = 'rgb(' + red + ',' + green + ',' + blue + ')';
-            //this.color             = 'rgb(0,0,0)';
+            // var red =  Math.floor(Math.random() * 200),
+            //     green = Math.floor(Math.random() * 200),
+            //     blue = Math.floor(Math.random() * 200);
+            // this.color = 'rgb(' + red + ',' + green + ',' + blue + ')';
+            this.color             = 'rgb(0,0,0)';
             this.walls             = {};
             this.left              = true;
             this.top               = true;
